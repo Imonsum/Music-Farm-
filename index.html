@@ -145,15 +145,14 @@
     <main>
       <br>
       <article class="main">
-<html><head>
+	      
+	      <html><head>
 	<title>Frickl - SELFHTML-Wiki</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css" media="screen">
 		.flex-container {
 			display: flex;
-			max-width: 45em;
-			border: 2px dotted;
 		}
 		
 		.flex-item {
@@ -163,22 +162,21 @@
 			background: #ffebe6;
 		}
 		
-		.no {
-			flex-wrap: nowrap;
+		.row {
+			flex-direction: row;
 		}
 		
-		.wrap {
-			flex-wrap: wrap;
+		.row-reverse {
+			flex-direction: row-reverse;
 		}
 		
-		.wrap-reverse {
-			flex-wrap: wrap-reverse;
+		.column {
+			flex-direction: column;
 		}
 		
 		p.flex-item {
 			font-weight: bold;
 			text-align: center;
-			width: 12em;
 		}
 		
 		.flex-item:nth-of-type(2) {
@@ -206,14 +204,11 @@
 </head>
 
 <body>
+	<h1>Flexbox 2 - flex-direction</h1>
 	<main>
-
-		<div class="flex-container wrap">
-			<p class="flex-item">
-			<audio controls="" src="https://www.musicfox.com/download-kostenlos.php?file=musicfox_shopping_street.mp3">
-       Ihr Browser kann dieses Tondokument nicht wiedergeben.
-</audio>
-			</p>
+		<p>column</p>
+		<div class="flex-container column">
+			<p class="flex-item">1</p>
 			<p class="flex-item">2</p>
 			<p class="flex-item">3</p>
 			<p class="flex-item">4</p>
@@ -226,7 +221,6 @@
 
 </body></html>
 	      
-	      <hr>
 <audio controls="" src="https://www.musicfox.com/download-kostenlos.php?file=musicfox_shopping_street.mp3">
        Ihr Browser kann dieses Tondokument nicht wiedergeben.
 </audio>
