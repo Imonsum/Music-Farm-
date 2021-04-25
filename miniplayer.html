@@ -1,0 +1,474 @@
+<html lang="en"><head>
+	<title>Frickl - SELFHTML-Wiki</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body translate="no">
+	
+
+	
+		<meta charset="UTF-8">
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+			html,
+			body {
+				background: #fff;
+				width: 100%;
+				height: 100%;
+				position: relative;
+				margin: 0;
+				padding: 0;
+				overflow-x: hidden;
+			}
+			
+			.audio-container {
+				position: absolute;
+				top: 50%;
+				width: 100%;
+				transform: translateY(-50%);
+			}
+			
+			.audiosvg-container {
+				position: relative;
+			}
+			
+			.play-text {
+				position: absolute;
+				left: 50%;
+				top: 0;
+				transform: translateX(-50%);
+				font-size: 35px;
+				font-family: 'Montserrat', sans-serif;
+				letter-spacing: 1px;
+				/*   text-transform: uppercase; */
+				
+				color: #1A478C;
+				opacity: 0;
+				visibility: hidden;
+			}
+			
+			.pause-text {
+				position: absolute;
+				left: 50%;
+				top: 0;
+				transform: translateX(-50%);
+				font-size: 35px;
+				font-family: 'Montserrat', sans-serif;
+				letter-spacing: 1px;
+				/*   text-transform: uppercase; */
+				
+				color: #486CA3;
+				opacity: 0;
+				visibility: hidden;
+			}
+			
+			.active-box {
+				width: 40%;
+				max-width: 350px;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				-webkit-transform: translateX(-50%);
+				-ms-transform: translateX(-50%);
+				display: none;
+			}
+			
+			.audiosvg {
+				width: 80%;
+				max-width: 80vw;
+				max-height: 80vh;
+				margin: auto;
+				display: block;
+			}
+			
+			#hover-circle .st4 {
+				transition: all 0.25s;
+			}
+			
+			#ripple-circle circle {
+				opacity: 0.5;
+			}
+			
+			.audio-overlay {
+				width: 100%;
+				height: 100%;
+				position: relative;
+				background-color: #fff;
+				z-index: 100;
+				bottom: 0;
+			}
+			
+			@media screen and (max-width: 768px) {
+				.js-video {
+					border: none;
+				}
+				.slideshow ul li {
+					padding: 0;
+				}
+				.info-container p {
+					text-align: center;
+				}
+				.video-container {
+					padding: 20px 20px 8vh 20px;
+				}
+				.audio-container {
+					padding: 8vh 20px 20px 20px;
+				}
+			}
+			
+			@media screen and (max-width: 480px) {
+				.circle {
+					width: 4px;
+					height: 4px;
+					margin: 2px 4px;
+				}
+				#videosvg,
+				.audiosvg {
+					width: 66%;
+				}
+				.dialog__content {
+					width: 80% !important;
+					padding: 10px !important;
+				}
+				.dialog__content button {
+					border-radius: 0 !important;
+					height: 30px !important;
+				}
+				.qingli-logo {
+					width: 36px;
+					height: 36px;
+					top: 15px;
+					right: -10px;
+				}
+			}
+
+		</style>
+		<script>
+			window.console = window.console || function (t) {};
+
+		</script>
+		<script>
+			if (document.location.search.match(/type=embed/gi)) {
+				window.parent.postMessage("resize", "*");
+			}
+
+		</script>
+	
+
+	
+		<div class="audio-container">
+			<div class="audiosvg-container">
+				<h1 class="play-text" style="transform-origin: 50% 50% 0px; visibility: hidden; opacity: 0; transform: matrix(1, 0, 0, 1, -40.5, 0);">play</h1>
+				<h1 class="pause-text" style="transform-origin: 50% 50% 0px; visibility: hidden; opacity: 0; transform: matrix(1, 0, 0, 1, -57.5, 0);">pause</h1>
+				<div class="active-box" onclick="pauseAudio()" style="display: none;"></div>
+				<svg class="audiosvg" onclick="playAudio()" viewBox="0 0 250 250" style="enable-background:new 0 0 250 250;" xml:space="preserve">
+					<style type="text/css">
+						.st0 {
+							fill: none;
+							stroke: #486CA3;
+							stroke-width: 5.6943;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+							stroke-miterlimit: 10;
+						}
+						
+						.st1 {
+							fill: #7691BA;
+						}
+						
+						.st2 {
+							fill: none;
+							stroke: #1A478C;
+							stroke-width: 5.8983;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+							stroke-miterlimit: 10;
+						}
+						
+						.st3 {
+							fill: #1A478C;
+						}
+						
+						.st4 {
+							fill: #486CA3;
+						}
+						
+						.st5 {
+							fill: none;
+							stroke: #1A478C;
+							stroke-width: 7.5924;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+							stroke-miterlimit: 10;
+						}
+						
+						.st6 {
+							fill: #FFFFFF;
+						}
+						
+						.st7 {
+							fill: none;
+							stroke: #7691BA;
+							stroke-width: 13.2866;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+							stroke-miterlimit: 10;
+						}
+						
+						.st8 {
+							fill: none;
+							stroke: #486CA3;
+							stroke-width: 4.4082;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+							stroke-miterlimit: 10;
+						}
+						
+						.st9 {
+							fill: none;
+							stroke: #fff;
+							stroke-width: 0.5;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+							stroke-miterlimit: 10;
+						}
+
+					</style>
+					<g>
+						<g>
+							<g id="svg-audio" data-svg-origin="125.5 154" transform="matrix(-0.40577,0.91396,-0.91396,-0.40577,317.1730578621698,101.78501627926268)" style="transform-origin: 0px 0px 0px;">
+								<circle class="st5" cx="125.5" cy="154" r="66.3"></circle>
+								<path class="st3" d="M64.3,179.5c5.1,12.2,13.7,22.6,24.6,29.8l36.6-55.2L64.3,179.5z"></path>
+								<polygon class="st3" points="181.4,118.5 170.8,106.4 125.5,154 			"></polygon>
+								<g>
+									<g id="hover-circle">
+										<circle class="st4" cx="125.5" cy="154" r="24.7" style="fill: rgb(72, 108, 163);"></circle>
+									</g>
+									<g id="ripple-circle">
+										<circle class="st9" cx="125.5" cy="154" r="9.6" data-svg-origin="125.50000190734863 153.9999942779541" transform="matrix(0.5,0,0,0.5,62.75000190734863,76.9999942779541)" style="transform-origin: 0px 0px 0px; visibility: inherit; opacity: 0;"></circle>
+										<circle class="st9" cx="125.5" cy="154" r="9.6" data-svg-origin="125.50000190734863 153.9999942779541" transform="matrix(0.5,0,0,0.5,62.75000190734863,76.9999942779541)" style="transform-origin: 0px 0px 0px; visibility: inherit; opacity: 7.04151e-06;"></circle>
+										<circle class="st9" cx="125.5" cy="154" r="9.6" data-svg-origin="125.50000190734863 153.9999942779541" transform="matrix(0.5,0,0,0.5,62.75000190734863,76.9999942779541)" style="transform-origin: 0px 0px 0px; visibility: inherit; opacity: 0.00110728;"></circle>
+									</g>
+									<circle class="st3" cx="125.5" cy="154" r="9.6"></circle>
+								</g>
+							</g>
+							<g> </g>
+						</g>
+						<g id="svg-line" data-svg-origin="92.30224305175781 236.6999969482422" transform="matrix(1,0,0,1,-2.58270816202016,0)">
+						</g>
+					</g>
+				</svg>
+			</div>
+		</div>
+		<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+		<script id="rendered-js">
+			TweenMax.set('#ripple-circle circle', {
+				scale: 0.5,
+				transformOrigin: '50% 50%'
+			});
+			TweenMax.fromTo('#svg-line', 2, {
+				x: -2.5
+			}, {
+				x: 2.5,
+				repeat: -1,
+				ease: Elastic.easeInOut,
+				yoyo: true
+			});
+			TweenMax.fromTo('.loading-image', 2, {
+				scale: 1,
+				autoAlpha: 1
+			}, {
+				scale: 0.75,
+				autoAlpha: 0.5,
+				transformOrigin: '50% 50%',
+				ease: Bounce.easeIn,
+				yoyo: true,
+				repeat: -1
+			});
+			TweenMax.to('#inner-circ', 2, {
+				rotation: 360,
+				transformOrigin: '50% 50%',
+				repeat: -1
+			});
+			TweenMax.to('#outer-circ', 4, {
+				rotation: -360,
+				transformOrigin: '50% 50%',
+				repeat: -1
+			});
+			$('.audiosvg')
+				.hover(function () {
+					hoverCircle = $(this)
+						.find('#hover-circle .st4');
+					$(hoverCircle)
+						.css({
+							'fill': '#7691BA'
+						});
+					TweenMax.to('.play-text', 0.35, {
+						autoAlpha: 1,
+						y: -70,
+						transformOrigin: '50% 50%',
+						ease: Back.easeOut
+					});
+				}, function () {
+					$(hoverCircle)
+						.css({
+							'fill': '#486CA3'
+						});
+					TweenMax.to('.play-text', 0.35, {
+						autoAlpha: 0,
+						y: 0,
+						transformOrigin: '50% 50%',
+						ease: Back.easeIn
+					});
+				});
+			$('.audiosvg')
+				.click(function () {
+					var spinDisc = $(this)
+						.find('#svg-audio');
+					var rippleCircle = $(this)
+						.find('#ripple-circle circle');
+					var activeBox = $(this)
+						.prev();
+					TweenMax.set(spinDisc, {
+						rotation: 0,
+						transformOrigin: '50% 50%'
+					});
+					TweenMax.to(spinDisc, 2, {
+						rotation: 360,
+						transformOrigin: '50% 50%',
+						repeat: -1,
+						ease: Linear.easeNone
+					});
+					TweenMax.staggerTo(rippleCircle, 2.1, {
+						scale: 20,
+						transformOrigin: '50% 50%',
+						autoAlpha: 0,
+						repeat: -1,
+						ease: Linear.easeNone
+					}, 0.7);
+					$(activeBox)
+						.show();
+					TweenMax.set('.play-text', {
+						autoAlpha: 0,
+						y: 0,
+						transformOrigin: '50% 50%'
+					});
+					TweenMax.set('.pause-text', {
+						autoAlpha: 0,
+						y: 0,
+						transformOrigin: '50% 50%'
+					});
+				});
+			$('.active-box')
+				.click(function () {
+					$(this)
+						.hide();
+					TweenMax.killTweensOf($(this)
+						.next()
+						.find('#svg-audio'));
+					TweenMax.killTweensOf($(this)
+						.next()
+						.find('#ripple-circle circle'));
+					TweenMax.set('#ripple-circle circle', {
+						scale: 0.5,
+						transformOrigin: '50% 50%'
+					});
+					TweenMax.set('.play-text', {
+						autoAlpha: 0,
+						y: 0,
+						transformOrigin: '50% 50%'
+					});
+					TweenMax.set('.pause-text', {
+						autoAlpha: 0,
+						y: 0,
+						transformOrigin: '50% 50%'
+					});
+				});
+			$('.active-box')
+				.hover(function () {
+					hoverCircle = $(this)
+						.parent()
+						.find('#hover-circle .st4');
+					$(hoverCircle)
+						.css({
+							'fill': '#7691BA'
+						});
+					TweenMax.to('.pause-text', 0.35, {
+						autoAlpha: 1,
+						y: -70,
+						transformOrigin: '50% 50%',
+						ease: Back.easeOut
+					});
+				}, function () {
+					$(hoverCircle)
+						.css({
+							'fill': '#486CA3'
+						});
+					TweenMax.to('.pause-text', 0.35, {
+						autoAlpha: 0,
+						y: 0,
+						transformOrigin: '50% 50%',
+						ease: Back.easeIn
+					});
+				});
+			var audioMp3 = new Audio();
+			audioMp3.src =
+				'https://github.com/FlipTip/Music-Chicken/blob/gh-pages/music/Fly%20Away_11.wav?raw=true';
+
+			function playAudio() {
+				audioMp3.play();
+			}
+
+			function pauseAudio() {
+				audioMp3.pause();
+			}
+			$('.circles')
+				.click(function () {
+					TweenMax.to('.socialmedia-overlay', 1, {
+						css: {
+							'top': 0
+						},
+						ease: Bounce.easeOut
+					});
+					TweenMax.to('.fa-angle-up', 0.5, {
+						autoAlpha: 1,
+						ease: Power2.easeOut,
+						delay: 1
+					});
+					TweenMax.staggerFrom('.socialmedia-content div', 0.5, {
+						scale: 0.1,
+						transformOrigin: '50% 50%',
+						autoAlpha: 0,
+						ease: Back.easeOut,
+						delay: 0.75
+					}, 0.5);
+				});
+			$('.fa-angle-up')
+				.click(function () {
+					TweenMax.to('.socialmedia-overlay', 0.5, {
+						css: {
+							'top': '-100%'
+						},
+						ease: Power2.easeInOut
+					});
+					TweenMax.to(this, 0.5, {
+						autoAlpha: 0,
+						ease: Power2.easeOut
+					});
+				});
+			//# sourceURL=pen.js
+
+		</script>
+	
+
+	
+
+
+
+
+</body></html>
