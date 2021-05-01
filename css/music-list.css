@@ -1,0 +1,49 @@
+
+		.flex-container {
+			display: flex;
+		}
+
+		.flex-item {
+			border: 1px solid;
+			margin: .5em;
+			padding: .5em;
+			background: #ffebe6;
+		}
+
+		.row {
+			flex-direction: row;
+		}
+
+		.row-reverse {
+			flex-direction: row-reverse;
+		}
+
+		.column {
+			flex-direction: column;
+		}
+
+		p.flex-item {
+			font-weight: bold;
+		}
+
+		.flex-item:nth-of-type(2) {
+			background: #fdfcf3;
+		}
+
+		.flex-item:nth-of-type(3) {
+			background: #ebf5d7;
+		}
+
+		.flex-item:nth-of-type(4) {
+			background: #e6f2f7;
+		}
+
+		.flex-item:nth-of-type(5) {
+			background: hsl(205deg 76% 80%);
+		}
+		
+		.playbutton {
+			text-align: left;
+			max-width: 30vw;
+			}
+		
