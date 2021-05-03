@@ -40,6 +40,7 @@ header.banner {
 
 .mcvideo {
 	z-index: 85;
+	padding-top: 2.5em;
 }
 
 p.title {
